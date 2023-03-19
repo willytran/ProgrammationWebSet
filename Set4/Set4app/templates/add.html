@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My App - Add Entry</title>
+</head>
+<body>
+    <h1>Add new entry</h1>
+    {% if errors %}
+        <p style="color: red;">Please correct the following errors:</p>
+        <ul>
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" value="{{ name }}" maxlength="20">
+        </p>
+        <p>
+            <label for="content">Content:</label>
+            <textarea name="content" id="content" maxlength="120">{{ content }}</textarea>
+        </p>
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+    </form>
+    <p><a href="{% url 'index' %}">Back to homepage</a></p>
+</body>
+</html>

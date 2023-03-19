@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Homepage</title>
+        <style>
+            /* Define a custom highlight style */
+            .highlight {
+                background-color: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Welcome my App - Set 4 | TRAN Willy</h1>
+            <p>Latest entries :</p>
+            <ul class="list-group">
+                {% for entry in entries %}
+                    <li class="{% if entry.id == new_entry_id %}bg-success text-white{% endif %}{% if forloop.last %} highlight{% endif %}">
+                        #{{ entry.id }} - {{ entry.content }} - by {{ entry.name }}
+                        (<a href="{% url 'entry' entry.id %}">JSON</a>)
+                    </li>
+                {% empty %}
+                    <li>No entries yet.</li>
+                {% endfor %}
+            </ul>
+            <p><a href="{% url 'add' %}">Add new entry</a></p>
+        </div>
+    </body>
+</html>
